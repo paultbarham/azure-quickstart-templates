@@ -42,21 +42,21 @@
     },
     "imagePublisher": {
       "type": "string",
-      "defaultValue": "Canonical",
+      "defaultValue": "canonical",
       "metadata": {
         "description": "Image Publisher"
       }
     },
     "imageOffer": {
       "type": "string",
-      "defaultValue": "UbuntuServer",
+      "defaultValue": "ubuntuserver",
       "metadata": {
         "description": "Image Offer"
       }
     },
     "imageSKU": {
       "type": "string",
-      "defaultValue": "16.04-LTS",
+      "defaultValue": "16.04.0-LTS",
       "metadata": {
         "description": "Image SKU"
       }
