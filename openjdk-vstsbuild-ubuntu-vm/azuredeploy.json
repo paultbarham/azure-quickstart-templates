@@ -2,24 +2,32 @@
   "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
   "contentVersion": "1.0.0.0",
   "parameters": {
-    "javaPackageName": {
+    "vstsAccountURL": {
       "type": "string",
-      "defaultValue": "openjdk-7-jdk",
-      "allowedValues": [
-        "openjdk-6-jdk",
-        "openjdk-7-jdk",
-        "openjdk-8-jdk"
-      ]
+      "metadata": {
+        "description": "Team Services account URL"
+      }
     },
-    "tomcatPackageName": {
+    "vstsPAT": {
       "type": "string",
-      "defaultValue": "tomcat7",
-      "allowedValues": [
-        "tomcat6",
-        "tomcat7",
-        "tomcat8"
-      ]
+      "metadata": {
+        "description": "Team Services PAT for user with build permissions"
+      }
     },
+    "vstsPoolName": {
+      "type": "string",
+      "defaultValue": "default",
+      "metadata": {
+        "description": "Team Services Agent Pool Name"
+      }
+    },
+    "vstsAgentName": {
+      "type": "string",
+      "defaultValue": "openjdk-ubuntu-auto",
+      "metadata": {
+        "description": "Team Services Agent Name"
+      }
+    },    
     "newStorageAccountName": {
       "type": "string",
       "metadata": {
@@ -48,7 +56,7 @@
     },
     "imageSKU": {
       "type": "string",
-      "defaultValue": "14.04.2-LTS",
+      "defaultValue": "16.04-LTS",
       "metadata": {
         "description": "Image SKU"
       }
@@ -198,9 +206,9 @@
         "typeHandlerVersion": "1.2",
         "settings": {
           "fileUris": [
-            "https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/openjdk-tomcat-ubuntu-vm/java-tomcat-install.sh"
+            "https://raw.githubusercontent.com/paultbarham/azure-quickstart-templates/master/java-vstsbuild-install.sh"
           ],
-          "commandToExecute": "[concat('sh java-tomcat-install.sh',' ',parameters('javaPackageName'),' ',parameters('tomcatPackageName'))]"
+          "commandToExecute": "[concat('sh java-vstsbuild-install.sh',' ',parameters('vstsAccountURL'),' ',parameters('vstsPAT'),' ',parameters('vstsPoolName'),' ',parameters('vstsAgentName'))]"
         }
       }
     }
