@@ -56,7 +56,7 @@
     },
     "imageSKU": {
       "type": "string",
-      "defaultValue": "16.04-LTS",
+      "defaultValue": "16.04.2-LTS",
       "metadata": {
         "description": "Image SKU"
       }
@@ -206,7 +206,7 @@
         "typeHandlerVersion": "1.2",
         "settings": {
           "fileUris": [
-            "https://raw.githubusercontent.com/paultbarham/azure-quickstart-templates/master/java-vstsbuild-install.sh"
+            "https://raw.githubusercontent.com/paultbarham/azure-quickstart-templates/master/openjdk-vstsbuild-ubuntu-vm/java-vstsbuild-install.sh"
           ],
           "commandToExecute": "[concat('sh java-vstsbuild-install.sh',' ',parameters('vstsAccountURL'),' ',parameters('vstsPAT'),' ',parameters('vstsPoolName'),' ',parameters('vstsAgentName'))]"
         }
