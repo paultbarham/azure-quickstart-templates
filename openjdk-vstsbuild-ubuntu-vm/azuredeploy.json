@@ -56,7 +56,7 @@
     },
     "imageSKU": {
       "type": "string",
-      "defaultValue": "16.04.2-LTS",
+      "defaultValue": "16.04-LTS",
       "metadata": {
         "description": "Image SKU"
       }
