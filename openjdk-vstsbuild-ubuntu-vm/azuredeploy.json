@@ -73,7 +73,7 @@
     "publicIPAddressName": "myPublicIP",
     "publicIPAddressType": "Dynamic",
     "vmStorageAccountContainerName": "vhds",
-    "vmName": "[parameters('vmDnsName')]",,
+    "vmName": "[parameters('vmDnsName')]",
     "vmSize": "Standard_A0",
     "virtualNetworkName": "[concat('MyVNET', uniqueString(subscription().subscriptionId))]",
     "vnetID": "[resourceId('Microsoft.Network/virtualNetworks',variables('virtualNetworkName'))]",
