@@ -208,7 +208,7 @@
           "fileUris": [
             "https://raw.githubusercontent.com/paultbarham/azure-quickstart-templates/master/openjdk-vstsbuild-ubuntu-vm/java-vstsbuild-install.sh"
           ],
-          "commandToExecute": "[concat('sh java-vstsbuild-install.sh',' ',parameters('vstsAccountURL'),' ',parameters('vstsPAT'),' ',parameters('vstsPoolName'),' ',parameters('vstsAgentName'))]"
+          "commandToExecute": "[concat('sh java-vstsbuild-install.sh',' ',parameters('vstsAccountURL'),' ',parameters('vstsPAT'),' ',parameters('vstsPoolName'),' ',parameters('vstsAgentName'),' ',parameters('adminUserName'))]"
         }
       }
     }
