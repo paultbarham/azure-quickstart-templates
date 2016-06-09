@@ -18,25 +18,27 @@ echo "Done." >> /home/$5/install.progress.txt
 
 sudo /bin/date +%H:%M:%S >> /home/$5/install.progress.txt
 echo "Installing openjdk-7-jdk package" >> /home/$5/install.progress.txt
-sudo /bin/date +%H:%M:%S >> /home/$5/install.progress.txt
-echo "Done." >> /home/$5/install.progress.txt
+
 
 sudo add-apt-repository -y ppa:openjdk-r/ppa
 sudo apt-get -y update
 sudo apt-get install -y openjdk-7-jdk
 sudo apt-get -y update --fix-missing
 sudo apt-get install -y openjdk-7-jdk
+sudo /bin/date +%H:%M:%S >> /home/$5/install.progress.txt
+echo "Done." >> /home/$5/install.progress.txt
 
 sudo /bin/date +%H:%M:%S >> /home/$5/install.progress.txt
 echo "Installing openjdk-8-jdk package" >> /home/$5/install.progress.txt
-sudo /bin/date +%H:%M:%S >> /home/$5/install.progress.txt
-echo "Done." >> /home/$5/install.progress.txt
 
 sudo add-apt-repository -y ppa:openjdk-r/ppa
 sudo apt-get -y update
 sudo apt-get install -y openjdk-8-jdk
 sudo apt-get -y update --fix-missing
 sudo apt-get install -y openjdk-8-jdk
+
+sudo /bin/date +%H:%M:%S >> /home/$5/install.progress.txt
+echo "Done." >> /home/$5/install.progress.txt
 
 # sudo add-apt-repository -y ppa:webupd8team/java
 # sudo apt-get -y update
@@ -62,7 +64,7 @@ sudo /bin/date +%H:%M:%S >> /home/$5/install.progress.txt
 echo "Done." >> /home/$5/install.progress.txt
 
 sudo /bin/date +%H:%M:%S >> /home/$5/install.progress.txt
-echo "Installing gradle package" >> /home/$5/install.progress.tx
+echo "Installing gradle package" >> /home/$5/install.progress.txt
 sudo apt-get -y install gradle
 sudo /bin/date +%H:%M:%S >> /home/$5/install.progress.txt
 echo "Done." >> /home/$5/install.progress.txt
@@ -79,7 +81,7 @@ echo "Done." >> /home/$5/install.progress.txt
 sudo /bin/date +%H:%M:%S >> /home/$5/install.progress.txt
 echo "Installing gulp package" >> /home/$5/install.progress.txt
 sudo npm install -g gulp
-sudo npm install -g gulp --save-dev
+sudo -u $5 npm install gulp --save-dev
 sudo /bin/date +%H:%M:%S >> /home/$5/install.progress.txt
 echo "Done." >> /home/$5/install.progress.txt
 
