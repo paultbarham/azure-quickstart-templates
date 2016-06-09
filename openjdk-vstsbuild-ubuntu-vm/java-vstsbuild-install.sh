@@ -1,20 +1,25 @@
 #!/bin/sh
 
-
-
-#Install Build Tools
-
-echo "Installing build-essential package" > /home/$5/install.progress.txt
+# Install Build Tools
+sudo /bin/date +%H:%M:%S > /home/$5/install.progress.txt
+echo "Installing build-essential package" >> /home/$5/install.progress.txt
 sudo apt-get -y install build-essential
+sudo /bin/date +%H:%M:%S >> /home/$5/install.progress.txt
+echo "Done." >> /home/$5/install.progress.txt
 
+sudo /bin/date +%H:%M:%S >> /home/$5/install.progress.txt
 echo "Installing packaging-dev package" >> /home/$5/install.progress.txt
 sudo apt-get -y install packaging-dev
+sudo /bin/date +%H:%M:%S >> /home/$5/install.progress.txt
+echo "Done." >> /home/$5/install.progress.txt
 
 
+# Install Java
 
-#Install Java
-
+sudo /bin/date +%H:%M:%S >> /home/$5/install.progress.txt
 echo "Installing openjdk-7-jdk package" >> /home/$5/install.progress.txt
+sudo /bin/date +%H:%M:%S >> /home/$5/install.progress.txt
+echo "Done." >> /home/$5/install.progress.txt
 
 sudo add-apt-repository -y ppa:openjdk-r/ppa
 sudo apt-get -y update
@@ -22,7 +27,10 @@ sudo apt-get install -y openjdk-7-jdk
 sudo apt-get -y update --fix-missing
 sudo apt-get install -y openjdk-7-jdk
 
+sudo /bin/date +%H:%M:%S >> /home/$5/install.progress.txt
 echo "Installing openjdk-8-jdk package" >> /home/$5/install.progress.txt
+sudo /bin/date +%H:%M:%S >> /home/$5/install.progress.txt
+echo "Done." >> /home/$5/install.progress.txt
 
 sudo add-apt-repository -y ppa:openjdk-r/ppa
 sudo apt-get -y update
@@ -40,34 +48,54 @@ sudo apt-get install -y openjdk-8-jdk
 
 
 
-#Install Java build tools
-
-sudo apt-get -y install ant
+# Install Java build tools
+sudo /bin/date +%H:%M:%S >> /home/$5/install.progress.txt
 echo "Installing ant package" >> /home/$5/install.progress.txt
-sudo apt-get -y install maven
+sudo apt-get -y install ant
+sudo /bin/date +%H:%M:%S >> /home/$5/install.progress.txt
+echo "Done." >> /home/$5/install.progress.txt
+
+sudo /bin/date +%H:%M:%S >> /home/$5/install.progress.txt
 echo "Installing maven package" >> /home/$5/install.progress.txt
+sudo apt-get -y install maven
+sudo /bin/date +%H:%M:%S >> /home/$5/install.progress.txt
+echo "Done." >> /home/$5/install.progress.txt
+
+sudo /bin/date +%H:%M:%S >> /home/$5/install.progress.txt
+echo "Installing gradle package" >> /home/$5/install.progress.tx
 sudo apt-get -y install gradle
-echo "Installing gradle package" >> /home/$5/install.progress.txt
+sudo /bin/date +%H:%M:%S >> /home/$5/install.progress.txt
+echo "Done." >> /home/$5/install.progress.txt
 
 # Install NodeJS, npm, and gulp
+
+sudo /bin/date +%H:%M:%S >> /home/$5/install.progress.txt
 echo "Installing NodeJS package" >> /home/$5/install.progress.txt
 sudo curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -
 sudo apt-get install -y nodejs
+sudo /bin/date +%H:%M:%S >> /home/$5/install.progress.txt
+echo "Done." >> /home/$5/install.progress.txt
+
+sudo /bin/date +%H:%M:%S >> /home/$5/install.progress.txt
 echo "Installing gulp package" >> /home/$5/install.progress.txt
 sudo npm install -g gulp
-sudo npm install gulp --save-dev
-
+sudo npm install -g gulp --save-dev
+sudo /bin/date +%H:%M:%S >> /home/$5/install.progress.txt
+echo "Done." >> /home/$5/install.progress.txt
 
 
 # Install VSTS build agent dependencies
 
+sudo /bin/date +%H:%M:%S >> /home/$5/install.progress.txt
 echo "Installing libunwind8 and libcurl3 package" >> /home/$5/install.progress.txt
 sudo apt-get -y install libunwind8 libcurl3
-
+sudo /bin/date +%H:%M:%S >> /home/$5/install.progress.txt
+echo "Done." >> /home/$5/install.progress.txt
 
 
 # Download VSTS build agent and required security patch
 
+sudo /bin/date +%H:%M:%S >> /home/$5/install.progress.txt
 echo "Installing VSTS Build agent package" >> /home/$5/install.progress.txt
 sudo -u $5 mkdir /home/$5/downloads
 cd /home/$5/downloads
@@ -95,10 +123,13 @@ echo "JAVA_HOME_8_X64=/usr/lib/jvm/java-8-openjdk-amd64" >> .Env
 # Remove NODE_ENV=production from service template file
 sudo sed -i 's,NODE_ENV=production,,g' ./bin/vsts.agent.service.template
 
+
 # sudo -u $5 -E sh ./config.sh --unattended --runasservice --replace --acceptteeeula --url $1 --auth PAT --token $2 --pool $3 --agent $4
 # source ./config.sh --unattended --runasservice --replace --acceptteeeula --url $1 --auth PAT --token $2 --pool $3 --agent $4
 
 sudo bin/Agent.Listener --configure --unattended --runasservice --replace --acceptteeeula --url $1 --auth PAT --token $2 --pool $3 --agent $4
 
+sudo /bin/date +%H:%M:%S >> /home/$5/install.progress.txt
 echo "ALL DONE!" >> /home/$5/install.progress.txt
 
+sudo chown -R $5.$5 .*
