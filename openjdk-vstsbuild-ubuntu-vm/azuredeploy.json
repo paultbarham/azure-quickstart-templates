@@ -75,7 +75,7 @@
     "vmStorageAccountContainerName": "vhds",
     "vmName": "[parameters('vmDnsName')]",
     "vmSize": "Standard_A0",
-    "virtualNetworkName": "[concat('MyVNET', uniqueString(subscription().subscriptionId))]",
+    "virtualNetworkName": "MyVNET",
     "vnetID": "[resourceId('Microsoft.Network/virtualNetworks',variables('virtualNetworkName'))]",
     "storageAccountType": "Standard_LRS",
     "subnet1Ref": "[concat(variables('vnetID'),'/subnets/',variables('subnet1Name'))]"
