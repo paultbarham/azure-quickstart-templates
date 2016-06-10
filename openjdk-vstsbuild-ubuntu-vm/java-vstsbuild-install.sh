@@ -40,6 +40,10 @@ sudo apt-get install -y openjdk-8-jdk
 sudo /bin/date +%H:%M:%S >> /home/$5/install.progress.txt
 echo "Done." >> /home/$5/install.progress.txt
 
+# Install Oracle Java in silent mode
+# echo debconf shared/accepted-oracle-license-v1-1 select true | sudo debconf-set-selections
+# echo debconf shared/accepted-oracle-license-v1-1 seen true | sudo debconf-set-selections
+
 # sudo add-apt-repository -y ppa:webupd8team/java
 # sudo apt-get -y update
 # sudo apt-get install -y oracle-java7-installer
