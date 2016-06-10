@@ -103,12 +103,27 @@ echo "Done." >> /home/$5/install.progress.txt
 
 sudo /bin/date +%H:%M:%S >> /home/$5/install.progress.txt
 echo "Installing VSTS Build agent package" >> /home/$5/install.progress.txt
+
 sudo -u $5 mkdir /home/$5/downloads
 cd /home/$5/downloads
+
 sudo -u $5 wget https://github.com/Microsoft/vsts-agent/releases/download/v2.101.1/vsts-agent-ubuntu.14.04-x64-2.101.1.tar.gz
 sudo -u $5 wget http://security.ubuntu.com/ubuntu/pool/main/i/icu/libicu52_52.1-8ubuntu0.2_amd64.deb
 sudo dpkg -i libicu52_52.1-8ubuntu0.2_amd64.deb
 
+
+# Download Team needed libraries
+# sudo -u $5 wget https://xplatalm.blob.core.windows.net/buildlibs/git4idea.zip
+# sudo -u $5 wget https://xplatalm.blob.core.windows.net/buildlibs/eclipse.egit.repository-2.1.0.201209190230-r.zip
+# sudo -u $5 wget https://xplatalm.blob.core.windows.net/buildlibs/eclipse-SDK-3.5.2-linux-gtk-x86_64.tar.gz
+# sudo -u $5 wget https://xplatalm.blob.core.windows.net/buildlibs/ideaIC-14.1.4.zip
+# sudo -u $5 wget https://xplatalm.blob.core.windows.net/buildlibs/ideaIC-15.0.6.tar.gz
+# sudo -u $5 wget https://xplatalm.blob.core.windows.net/buildlibs/ideaIC-2016.1.2b.tar.gz
+
+# Configure Team gradle properties
+# touch /home/$5/.gradle/gradle.properties
+# echo "ideaSdk=/home/"$5"/lib/idea/lib" >> /home/$5/.gradle/gradle.properties
+# echo "git4idea=/home/"$5"/lib/idea/plugins/git4idea/lib" >> /home/$5/.gradle/gradle.properties
 
 
 # Install VSTS agent
