@@ -200,7 +200,7 @@ sudo sed -i 's,NODE_ENV=production,,g' ./bin/vsts.agent.service.template
 # sudo -u $5 -E sh ./config.sh --unattended --runasservice --replace --acceptteeeula --url $1 --auth PAT --token $2 --pool $3 --agent $4
 # source ./config.sh --unattended --runasservice --replace --acceptteeeula --url $1 --auth PAT --token $2 --pool $3 --agent $4
 
-sudo -u $5 bin/Agent.Listener --configure --unattended --runasservice --replace --acceptteeeula --url $1 --auth PAT --token $2 --pool $3 --agent $4
+bin/Agent.Listener --configure --unattended --runasservice --replace --acceptteeeula --url $1 --auth PAT --token $2 --pool $3 --agent $4
 
 sudo /bin/date +%H:%M:%S >> /home/$5/install.progress.txt
 echo "ALL DONE!" >> /home/$5/install.progress.txt
