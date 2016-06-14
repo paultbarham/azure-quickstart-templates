@@ -84,6 +84,7 @@ echo "Done." >> /home/$5/install.progress.txt
 sudo /bin/date +%H:%M:%S >> /home/$5/install.progress.txt
 echo "Installing gradle package" >> /home/$5/install.progress.txt
 sudo apt-get -y install gradle
+sudo -u $5 /usr/bin/gradle
 sudo /bin/date +%H:%M:%S >> /home/$5/install.progress.txt
 echo "Done." >> /home/$5/install.progress.txt
 
@@ -104,7 +105,8 @@ sudo /bin/date +%H:%M:%S >> /home/$5/install.progress.txt
 echo "Done." >> /home/$5/install.progress.txt
 
 sudo /bin/date +%H:%M:%S >> /home/$5/install.progress.txt
-echo "Installing vsce package" >> /home/$5/install.progress.txt
+echo "Installing vscode and vsce package" >> /home/$5/install.progress.txt
+sudo npm install -g vscode
 sudo npm install -g vsce
 sudo /bin/date +%H:%M:%S >> /home/$5/install.progress.txt
 echo "Done." >> /home/$5/install.progress.txt
@@ -145,15 +147,15 @@ sudo -u $5 wget https://xplatalm.blob.core.windows.net/buildlibs/ideaIC-14.1.4.z
 sudo -u $5 wget https://xplatalm.blob.core.windows.net/buildlibs/ideaIC-15.0.6.tar.gz
 sudo -u $5 wget https://xplatalm.blob.core.windows.net/buildlibs/ideaIC-2016.1.2b.tar.gz
 
-sudo -u $5 mkdir /home/$5/libs
-cd /home/$5/libs
+sudo -u $5 mkdir /home/$5/lib
+cd /home/$5/lib
 
 sudo -u $5 tar xvf /home/$5/downloads/eclipse-SDK-3.5.2-linux-gtk-x86_64.tar.gz
 sudo -u $5 mv eclipse eclipse-SDK-3.5.2
 cd eclipse-SDK-3.5.2
 sudo -u $5 unzip /home/$5/downloads/eclipse.egit.repository-2.1.0.201209190230-r.zip
 
-cd /home/$5/libs
+cd /home/$5/lib
 sudo -u $5 unzip /home/$5/downloads/ideaIC-14.1.4.zip
 sudo -u $5 tar xvf /home/$5/downloads/ideaIC-15.0.6.tar.gz
 sudo -u $5 tar xvf /home/$5/downloads/ideaIC-2016.1.2b.tar.gz
@@ -166,7 +168,8 @@ sudo -u $5 mv git4idea/git4idea.jar idea-14.1.4/plugins/git4idea/lib/
 
 # Configure Team gradle properties
 touch /home/$5/.gradle/gradle.properties
-echo "ideaSdk=/home/"$5"/lib/idea/lib" >> /home/$5/.gradle/gradle.properties
+# echo "ideaSdk=/home/"$5"/lib/idea/lib" > /home/$5/.gradle/gradle.properties
+echo "ideaSdk=/home/"$5"/lib/idea" > /home/$5/.gradle/gradle.properties
 echo "git4idea=/home/"$5"/lib/idea/plugins/git4idea/lib" >> /home/$5/.gradle/gradle.properties
 
 sudo /bin/date +%H:%M:%S >> /home/$5/install.progress.txt
@@ -197,7 +200,7 @@ sudo sed -i 's,NODE_ENV=production,,g' ./bin/vsts.agent.service.template
 # sudo -u $5 -E sh ./config.sh --unattended --runasservice --replace --acceptteeeula --url $1 --auth PAT --token $2 --pool $3 --agent $4
 # source ./config.sh --unattended --runasservice --replace --acceptteeeula --url $1 --auth PAT --token $2 --pool $3 --agent $4
 
-sudo bin/Agent.Listener --configure --unattended --runasservice --replace --acceptteeeula --url $1 --auth PAT --token $2 --pool $3 --agent $4
+sudo -u $5 bin/Agent.Listener --configure --unattended --runasservice --replace --acceptteeeula --url $1 --auth PAT --token $2 --pool $3 --agent $4
 
 sudo /bin/date +%H:%M:%S >> /home/$5/install.progress.txt
 echo "ALL DONE!" >> /home/$5/install.progress.txt
