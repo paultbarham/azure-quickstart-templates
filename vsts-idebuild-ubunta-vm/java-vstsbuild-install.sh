@@ -206,9 +206,16 @@ sudo sed -i 's,NODE_ENV=production,,g' ./bin/vsts.agent.service.template
 # sudo -u $5 -E sh ./config.sh --unattended --runasservice --replace --acceptteeeula --url $1 --auth PAT --token $2 --pool $3 --agent $4
 # sudo -u $5 ./config.sh --unattended --runasservice --replace --acceptteeeula --url $1 --auth PAT --token $2 --pool $3 --agent $4 > /home/$5/install.log.txt 2>&1
 
-sudo -u $5 -E bin/Agent.Listener --configure --unattended --nostart --replace --acceptteeeula --url $1 --auth PAT --token $2 --pool $3 --agent $4 > /home/$5/install.log.txt 2>&1
-sudo ./svc.sh install
-sudo ./svc.sh start
+echo Running Agent.Listener > /home/$5/install.log.txt 2>&1
+sudo -u $5 -E bin/Agent.Listener --configure --unattended --nostart --replace --acceptteeeula --url $1 --auth PAT --token $2 --pool $3 --agent $4 >> /home/$5/install.log.txt 2>&1
+echo =============================== >> /home/$5/install.log.txt 2>&1
+echo Running ./svc.sh install >> /home/$5/install.log.txt 2>&1
+sudo -E ./svc.sh install >> /home/$5/install.log.txt 2>&1
+echo =============================== >> /home/$5/install.log.txt 2>&1
+echo Running ./svc.sh start >> /home/$5/install.log.txt 2>&1
+sudo -E ./svc.sh start >> /home/$5/install.log.txt 2>&1
+echo =============================== >> /home/$5/install.log.txt 2>&1
+
 
 sudo /bin/date +%H:%M:%S >> /home/$5/install.progress.txt
 echo "ALL DONE!" >> /home/$5/install.progress.txt
