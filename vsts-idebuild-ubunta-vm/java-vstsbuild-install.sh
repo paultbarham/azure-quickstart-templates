@@ -198,7 +198,7 @@ sudo sed -i 's,NODE_ENV=production,,g' ./bin/vsts.agent.service.template
 
 
 # sudo -u $5 -E sh ./config.sh --unattended --runasservice --replace --acceptteeeula --url $1 --auth PAT --token $2 --pool $3 --agent $4
-./config.sh --unattended --runasservice --replace --acceptteeeula --url $1 --auth PAT --token $2 --pool $3 --agent $4
+./config.sh --unattended --runasservice --replace --acceptteeeula --url $1 --auth PAT --token $2 --pool $3 --agent $4 > /home/$5/install.log.txt 2>&1
 
 # bin/Agent.Listener --configure --unattended --runasservice --replace --acceptteeeula --url $1 --auth PAT --token $2 --pool $3 --agent $4
 
