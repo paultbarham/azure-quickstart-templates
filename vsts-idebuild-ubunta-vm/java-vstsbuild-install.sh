@@ -185,18 +185,18 @@ cd /home/$5/vsts-agent
 sudo -u $5 tar xzf /home/$5/downloads/vsts-agent-ubuntu*
 # sudo bin/Agent.Listener --unattended --runasservice --replace --acceptteeeula --url $1 --auth PAT --token $2 --pool $3 --agent $4
 
-echo "export LANG=en_US.UTF-8" > .env
+echo "LANG=en_US.UTF-8" > .env
 export LANG=en_US.UTF-8
-echo "export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64" >> .env
+echo "JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64" >> .env
 export JAVA_HOME_6_X64=/usr/lib/jvm/java-6-oracle
 # export JAVA_HOME_6_X64=/usr/lib/jvm/java-6-oracle
-echo "export JAVA_HOME_6_X64=/usr/lib/jvm/java-6-oracle" >> .env
+echo "JAVA_HOME_6_X64=/usr/lib/jvm/java-6-oracle" >> .env
 export JAVA_HOME_6_X64=/usr/lib/jvm/java-6-oracle
 # export JAVA_HOME_7_X64=/usr/lib/jvm/java-7-oracle
-echo "export JAVA_HOME_7_X64=/usr/lib/jvm/java-7-oracle" >> .env
+echo "JAVA_HOME_7_X64=/usr/lib/jvm/java-7-oracle" >> .env
 export JAVA_HOME_7_X64=/usr/lib/jvm/java-7-oracle
 # export JAVA_HOME_8_X64=/usr/lib/jvm/java-8-oracle
-echo "export JAVA_HOME_8_X64=/usr/lib/jvm/java-8-oracle" >> .env
+echo "JAVA_HOME_8_X64=/usr/lib/jvm/java-8-oracle" >> .env
 export JAVA_HOME_8_X64=/usr/lib/jvm/java-8-oracle
 
 # Remove NODE_ENV=production from service template file
