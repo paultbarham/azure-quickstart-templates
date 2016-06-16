@@ -64,6 +64,8 @@ sudo apt-get install -y openjdk-8-jdk
 sudo apt-get -y update --fix-missing
 sudo apt-get install -y openjdk-8-jdk
 
+sudo ln -s /usr/lib/jvm/java-8-openjdk-amd64/ /usr/lib/jvm/default-java
+
 sudo /bin/date +%H:%M:%S >> /home/$5/install.progress.txt
 echo "Done." >> /home/$5/install.progress.txt
 
@@ -108,6 +110,15 @@ sudo /bin/date +%H:%M:%S >> /home/$5/install.progress.txt
 echo "Installing vscode and vsce package" >> /home/$5/install.progress.txt
 sudo npm install -g vscode
 sudo npm install -g vsce
+sudo /bin/date +%H:%M:%S >> /home/$5/install.progress.txt
+echo "Done." >> /home/$5/install.progress.txt
+
+
+# Install Ruby and Ruby on Rails
+sudo /bin/date +%H:%M:%S >> /home/$5/install.progress.txt
+echo "Installing Ruby and Ruby on Rails" >> /home/$5/install.progress.txt
+sudo -u $5 gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3
+sudo -u $5 \curl -sSL https://get.rvm.io | sudo -u $5 bash -s stable --rails
 sudo /bin/date +%H:%M:%S >> /home/$5/install.progress.txt
 echo "Done." >> /home/$5/install.progress.txt
 
@@ -186,17 +197,22 @@ sudo -u $5 tar xzf /home/$5/downloads/vsts-agent-ubuntu*
 # sudo bin/Agent.Listener --unattended --runasservice --replace --acceptteeeula --url $1 --auth PAT --token $2 --pool $3 --agent $4
 
 echo "LANG=en_US.UTF-8" > .env
+echo "LANG=en_US.UTF-8" >> /home/$5/.bashrc
 export LANG=en_US.UTF-8
 echo "JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64" >> .env
+echo "JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64" >> /home/$5/.bashrc
 export JAVA_HOME_6_X64=/usr/lib/jvm/java-6-oracle
 # export JAVA_HOME_6_X64=/usr/lib/jvm/java-6-oracle
 echo "JAVA_HOME_6_X64=/usr/lib/jvm/java-6-oracle" >> .env
+echo "JAVA_HOME_6_X64=/usr/lib/jvm/java-6-oracle" >> /home/$5/.bashrc
 export JAVA_HOME_6_X64=/usr/lib/jvm/java-6-oracle
 # export JAVA_HOME_7_X64=/usr/lib/jvm/java-7-oracle
 echo "JAVA_HOME_7_X64=/usr/lib/jvm/java-7-oracle" >> .env
+echo "JAVA_HOME_7_X64=/usr/lib/jvm/java-7-oracle" >> /home/$5/.bashrc
 export JAVA_HOME_7_X64=/usr/lib/jvm/java-7-oracle
 # export JAVA_HOME_8_X64=/usr/lib/jvm/java-8-oracle
 echo "JAVA_HOME_8_X64=/usr/lib/jvm/java-8-oracle" >> .env
+echo "JAVA_HOME_8_X64=/usr/lib/jvm/java-8-oracle" >> /home/$5/.bashrc
 export JAVA_HOME_8_X64=/usr/lib/jvm/java-8-oracle
 
 # Remove NODE_ENV=production from service template file
@@ -206,15 +222,15 @@ sudo sed -i 's,NODE_ENV=production,,g' ./bin/vsts.agent.service.template
 # sudo -u $5 -E sh ./config.sh --unattended --runasservice --replace --acceptteeeula --url $1 --auth PAT --token $2 --pool $3 --agent $4
 # sudo -u $5 ./config.sh --unattended --runasservice --replace --acceptteeeula --url $1 --auth PAT --token $2 --pool $3 --agent $4 > /home/$5/install.log.txt 2>&1
 
-echo Running Agent.Listener > /home/$5/install.log.txt 2>&1
-sudo -u $5 -E bin/Agent.Listener --configure --unattended --nostart --replace --acceptteeeula --url $1 --auth PAT --token $2 --pool $3 --agent $4 >> /home/$5/install.log.txt 2>&1
-echo =============================== >> /home/$5/install.log.txt 2>&1
-echo Running ./svc.sh install >> /home/$5/install.log.txt 2>&1
-sudo -E ./svc.sh install $5 >> /home/$5/install.log.txt 2>&1
-echo =============================== >> /home/$5/install.log.txt 2>&1
-echo Running ./svc.sh start >> /home/$5/install.log.txt 2>&1
-sudo -E ./svc.sh start >> /home/$5/install.log.txt 2>&1
-echo =============================== >> /home/$5/install.log.txt 2>&1
+echo Running Agent.Listener > /home/$5/vsts.install.log.txt 2>&1
+sudo -u $5 -E bin/Agent.Listener --configure --unattended --nostart --replace --acceptteeeula --url $1 --auth PAT --token $2 --pool $3 --agent $4 >> /home/$5/vsts.install.log.txt 2>&1
+echo =============================== >> /home/$5/vsts.install.log.txt 2>&1
+echo Running ./svc.sh install >> /home/$5/vsts.install.log.txt 2>&1
+sudo -E ./svc.sh install $5 >> /home/$5/vsts.install.log.txt 2>&1
+echo =============================== >> /home/$5/vsts.install.log.txt 2>&1
+echo Running ./svc.sh start >> /home/$5/vsts.install.log.txt 2>&1
+sudo -E ./svc.sh start >> /home/$5/vsts.install.log.txt 2>&1
+echo =============================== >> /home/$5/vsts.install.log.txt 2>&1
 
 
 sudo /bin/date +%H:%M:%S >> /home/$5/install.progress.txt
