@@ -100,6 +100,22 @@ sudo -u $5 \curl -sSL https://get.rvm.io | sudo -u $5 bash -s stable --rails
 sudo /bin/date +%H:%M:%S >> /home/$5/install.progress.txt
 
 
+# Install Go
+echo "Installing Go" >> /home/$5/install.progress.txt
+sudo apt install -y golang-go
+sudo /bin/date +%H:%M:%S >> /home/$5/install.progress.txt
+
+
+# Install .NET
+echo "Installing Go" >> /home/$5/install.progress.txt
+sudo -u $5 mkdir /home/$5/lib/dotnet
+cd /home/$5/downloads
+sudo -u $5 wget https://dotnetcli.blob.core.windows.net/dotnet/preview/Binaries/1.0.0-preview2-002875/dotnet-dev-ubuntu-x64.1.0.0-preview2-002875.tar.gz
+cd /home/$5/lib/dotnet
+sudo -u $5 tar zxfv /home/$5/downloads/dotnet-dev-ubuntu-x64.1.0.0-preview2-002875.tar.gz
+sudo /bin/date +%H:%M:%S >> /home/$5/install.progress.txt
+
+
 # Install VSTS build agent dependencies
 
 echo "Installing libunwind8 and libcurl3 package" >> /home/$5/install.progress.txt
@@ -186,6 +202,9 @@ echo "JAVA_HOME_8_X64=/usr/lib/jvm/java-8-oracle" >> .env
 echo "export JAVA_HOME_8_X64=/usr/lib/jvm/java-8-oracle" >> /home/$5/.bashrc
 export JAVA_HOME_8_X64=/usr/lib/jvm/java-8-oracle
 
+# HACK - only needed if .NET is installed
+echo $PATH:/home/$5/lib/dotnet > /home/$5/vsts-agent/.path
+
 # HACK - Remove NODE_ENV=production from service template file
 sudo sed -i 's,NODE_ENV=production,,g' ./bin/vsts.agent.service.template
 
@@ -198,7 +217,7 @@ echo =============================== >> /home/$5/vsts.install.log.txt 2>&1
 echo Running ./svc.sh start >> /home/$5/vsts.install.log.txt 2>&1
 
 # HACK - only need next line if installing Ruby and Rails
-sudo sed -i "/^#!\/bin\/bash/a [[ -s \"\/home\/$1\/.rvm\/scripts\/rvm\" ]] \&\& source \"\/home\/$1\/.rvm\/scripts\/rvm\"" ./runsvc.sh
+sudo sed -i "/^#!\/bin\/bash/a [[ -s \"\/home\/$5\/.rvm\/scripts\/rvm\" ]] \&\& source \"\/home\/$5\/.rvm\/scripts\/rvm\"" ./runsvc.sh
 
 sudo -E ./svc.sh start >> /home/$5/vsts.install.log.txt 2>&1
 echo =============================== >> /home/$5/vsts.install.log.txt 2>&1
