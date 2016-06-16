@@ -197,25 +197,25 @@ sudo -u $5 tar xzf /home/$5/downloads/vsts-agent-ubuntu*
 # sudo bin/Agent.Listener --unattended --runasservice --replace --acceptteeeula --url $1 --auth PAT --token $2 --pool $3 --agent $4
 
 echo "LANG=en_US.UTF-8" > .env
-echo "LANG=en_US.UTF-8" >> /home/$5/.bashrc
+echo "export LANG=en_US.UTF-8" >> /home/$5/.bashrc
 export LANG=en_US.UTF-8
 echo "JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64" >> .env
-echo "JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64" >> /home/$5/.bashrc
+echo "export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64" >> /home/$5/.bashrc
 export JAVA_HOME_6_X64=/usr/lib/jvm/java-6-oracle
 # export JAVA_HOME_6_X64=/usr/lib/jvm/java-6-oracle
 echo "JAVA_HOME_6_X64=/usr/lib/jvm/java-6-oracle" >> .env
-echo "JAVA_HOME_6_X64=/usr/lib/jvm/java-6-oracle" >> /home/$5/.bashrc
+echo "export JAVA_HOME_6_X64=/usr/lib/jvm/java-6-oracle" >> /home/$5/.bashrc
 export JAVA_HOME_6_X64=/usr/lib/jvm/java-6-oracle
 # export JAVA_HOME_7_X64=/usr/lib/jvm/java-7-oracle
 echo "JAVA_HOME_7_X64=/usr/lib/jvm/java-7-oracle" >> .env
-echo "JAVA_HOME_7_X64=/usr/lib/jvm/java-7-oracle" >> /home/$5/.bashrc
+echo "export JAVA_HOME_7_X64=/usr/lib/jvm/java-7-oracle" >> /home/$5/.bashrc
 export JAVA_HOME_7_X64=/usr/lib/jvm/java-7-oracle
 # export JAVA_HOME_8_X64=/usr/lib/jvm/java-8-oracle
 echo "JAVA_HOME_8_X64=/usr/lib/jvm/java-8-oracle" >> .env
-echo "JAVA_HOME_8_X64=/usr/lib/jvm/java-8-oracle" >> /home/$5/.bashrc
+echo "export JAVA_HOME_8_X64=/usr/lib/jvm/java-8-oracle" >> /home/$5/.bashrc
 export JAVA_HOME_8_X64=/usr/lib/jvm/java-8-oracle
 
-# Remove NODE_ENV=production from service template file
+# HACK - Remove NODE_ENV=production from service template file
 sudo sed -i 's,NODE_ENV=production,,g' ./bin/vsts.agent.service.template
 
 
@@ -229,6 +229,7 @@ echo Running ./svc.sh install >> /home/$5/vsts.install.log.txt 2>&1
 sudo -E ./svc.sh install $5 >> /home/$5/vsts.install.log.txt 2>&1
 echo =============================== >> /home/$5/vsts.install.log.txt 2>&1
 echo Running ./svc.sh start >> /home/$5/vsts.install.log.txt 2>&1
+sudo sed -i 's,#!/bin/bash,#!/bin/bash\n[[ -s \"/home/xplatalm/.rvm/scripts/rvm\" ]] \&\& source \"/home/xplatalm/.rvm/scripts/rvm\",g' ./runsvc.sh
 sudo -E ./svc.sh start >> /home/$5/vsts.install.log.txt 2>&1
 echo =============================== >> /home/$5/vsts.install.log.txt 2>&1
 
