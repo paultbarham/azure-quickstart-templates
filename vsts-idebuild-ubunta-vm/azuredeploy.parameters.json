@@ -12,7 +12,7 @@
       "value": "default"
     },
     "vstsAgentName": {
-      "value": "ubuntu-java-auto"
+      "value": "ubuntu-build-ide-full"
     },
     "newStorageAccountName": {
       "value": ""
