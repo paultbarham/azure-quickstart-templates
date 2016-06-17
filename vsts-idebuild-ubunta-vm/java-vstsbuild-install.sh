@@ -154,7 +154,7 @@ sudo -u $5 tar xvf /home/$5/downloads/eclipse-SDK-3.5.2-linux-gtk-x86_64.tar.gz
 sudo -u $5 mv eclipse eclipse-SDK-3.5.2
 cd eclipse-SDK-3.5.2
 sudo -u $5 unzip /home/$5/downloads/eclipse.egit.repository-2.1.0.201209190230-r.zip
-
+cd /home/$5/lib
 sudo -u $5 unzip /home/$5/downloads/ideaIC-14.1.4.zip
 sudo -u $5 tar xvf /home/$5/downloads/ideaIC-15.0.6.tar.gz
 sudo -u $5 tar xvf /home/$5/downloads/ideaIC-2016.1.2b.tar.gz
