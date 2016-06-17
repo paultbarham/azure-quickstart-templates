@@ -19,6 +19,6 @@ This template allows you to create a Ubuntu VM with a full cross-platform develo
 * All dependent libs for building Visual Studio Team Services (VSTS) IDE plug-ins;  and
 * the VSTS CoreCLR Linux Build Agent. 
 
-Currently a custom script file is pulled from https://raw.githubusercontent.com/paultbarham/azure-quickstart-templates/master/vsts-idebuild-ubunta-vm/java-vstsbuild-install.sh
+Currently a custom script file is pulled from https://raw.githubusercontent.com/paultbarham/azure-quickstart-templates/master/vsts-idebuild-ubunta-vm/ide-vstsbuild-install.sh
 
 Once the VM is successfully provisioned, Team Services build agent installation and initialization can be verified by accessing the the Agent pools tab under the config for the Team Services account.

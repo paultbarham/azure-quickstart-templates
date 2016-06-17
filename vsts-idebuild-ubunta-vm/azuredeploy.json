@@ -206,9 +206,9 @@
         "typeHandlerVersion": "1.2",
         "settings": {
           "fileUris": [
-            "https://raw.githubusercontent.com/paultbarham/azure-quickstart-templates/master/vsts-idebuild-ubunta-vm/java-vstsbuild-install.sh"
+            "https://raw.githubusercontent.com/paultbarham/azure-quickstart-templates/master/vsts-idebuild-ubunta-vm/ide-vstsbuild-install.sh"
           ],
-          "commandToExecute": "[concat('sh java-vstsbuild-install.sh',' ',parameters('vstsAccountURL'),' ',parameters('vstsPAT'),' ',parameters('vstsPoolName'),' ',parameters('vstsAgentName'),' ',parameters('adminUserName'))]"
+          "commandToExecute": "[concat('sh ide-vstsbuild-install.sh',' ',parameters('vstsAccountURL'),' ',parameters('vstsPAT'),' ',parameters('vstsPoolName'),' ',parameters('vstsAgentName'),' ',parameters('adminUserName'))]"
         }
       }
     }
