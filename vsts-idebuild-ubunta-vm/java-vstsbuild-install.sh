@@ -105,9 +105,11 @@ echo "Installing Go" >> /home/$5/install.progress.txt
 sudo apt install -y golang-go
 sudo /bin/date +%H:%M:%S >> /home/$5/install.progress.txt
 
+sudo -u $5 mkdir /home/$5/downloads
+sudo -u $5 mkdir /home/$5/lib
 
 # Install .NET
-echo "Installing Go" >> /home/$5/install.progress.txt
+echo "Installing .NET" >> /home/$5/install.progress.txt
 sudo -u $5 mkdir /home/$5/lib/dotnet
 cd /home/$5/downloads
 sudo -u $5 wget https://dotnetcli.blob.core.windows.net/dotnet/preview/Binaries/1.0.0-preview2-002875/dotnet-dev-ubuntu-x64.1.0.0-preview2-002875.tar.gz
@@ -127,7 +129,6 @@ sudo /bin/date +%H:%M:%S >> /home/$5/install.progress.txt
 
 echo "Downloading VSTS Build agent package" >> /home/$5/install.progress.txt
 
-sudo -u $5 mkdir /home/$5/downloads
 cd /home/$5/downloads
 
 # sudo -u $5 wget https://github.com/Microsoft/vsts-agent/releases/download/v2.101.1/vsts-agent-ubuntu.14.04-x64-2.101.1.tar.gz
@@ -148,15 +149,12 @@ sudo -u $5 wget https://xplatalm.blob.core.windows.net/buildlibs/ideaIC-14.1.4.z
 sudo -u $5 wget https://xplatalm.blob.core.windows.net/buildlibs/ideaIC-15.0.6.tar.gz
 sudo -u $5 wget https://xplatalm.blob.core.windows.net/buildlibs/ideaIC-2016.1.2b.tar.gz
 
-sudo -u $5 mkdir /home/$5/lib
 cd /home/$5/lib
-
 sudo -u $5 tar xvf /home/$5/downloads/eclipse-SDK-3.5.2-linux-gtk-x86_64.tar.gz
 sudo -u $5 mv eclipse eclipse-SDK-3.5.2
 cd eclipse-SDK-3.5.2
 sudo -u $5 unzip /home/$5/downloads/eclipse.egit.repository-2.1.0.201209190230-r.zip
 
-cd /home/$5/lib
 sudo -u $5 unzip /home/$5/downloads/ideaIC-14.1.4.zip
 sudo -u $5 tar xvf /home/$5/downloads/ideaIC-15.0.6.tar.gz
 sudo -u $5 tar xvf /home/$5/downloads/ideaIC-2016.1.2b.tar.gz
@@ -203,7 +201,7 @@ echo "export JAVA_HOME_8_X64=/usr/lib/jvm/java-8-oracle" >> /home/$5/.bashrc
 export JAVA_HOME_8_X64=/usr/lib/jvm/java-8-oracle
 
 # HACK - only needed if .NET is installed
-echo $PATH:/home/$5/lib/dotnet > /home/$5/vsts-agent/.path
+echo $PATH:/home/$5/lib/dotnet:/home/$5/.rvm/bin:/home/$5/.rvm/bin > /home/$5/vsts-agent/.path
 
 # HACK - Remove NODE_ENV=production from service template file
 sudo sed -i 's,NODE_ENV=production,,g' ./bin/vsts.agent.service.template
