@@ -9,7 +9,7 @@
 
 This template allows you to create an Ubuntu VM with a full cross-platform development environment to support:
 
-• Oracle Java 6, 7, and 8; 
+• OpenJDK 7 and 8; 
 • Ant, Maven and Gradle;
 • npm and nodeJS;
 • groovy and gulp;
