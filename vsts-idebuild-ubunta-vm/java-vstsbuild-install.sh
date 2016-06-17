@@ -201,7 +201,7 @@ echo "export JAVA_HOME_8_X64=/usr/lib/jvm/java-8-oracle" >> /home/$5/.bashrc
 export JAVA_HOME_8_X64=/usr/lib/jvm/java-8-oracle
 
 # HACK - only needed if .NET and Ruby/Rails are installed
-sudo -u $5 echo $PATH:/home/$5/lib/dotnet:/home/$5/.rvm/bin:\$(MY_RUBY_HOME)/bin:\$(GEM_HOME)/bin > /home/$5/vsts-agent/.path
+sudo -u $5 echo $PATH:/home/$5/lib/dotnet:/home/$5/.rvm/bin:\$\(MY_RUBY_HOME\)/bin:\$\(GEM_HOME\)/bin > /home/$5/vsts-agent/.path
 
 # HACK - Remove NODE_ENV=production from service template file
 sudo sed -i 's,NODE_ENV=production,,g' ./bin/vsts.agent.service.template
