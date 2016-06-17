@@ -214,8 +214,10 @@ sudo -E ./svc.sh install $5 >> /home/$5/vsts.install.log.txt 2>&1
 echo =============================== >> /home/$5/vsts.install.log.txt 2>&1
 echo Running ./svc.sh start >> /home/$5/vsts.install.log.txt 2>&1
 
-# HACK - only need next line if installing Ruby and Rails
-sudo sed -i "/^#!\/bin\/bash/a [[ -s \"\/home\/$5\/.rvm\/scripts\/rvm\" ]] \&\& source \"\/home\/$5\/.rvm\/scripts\/rvm\"" ./runsvc.sh
+# HACK - only need next 3 lines if installing Ruby and Rails
+sudo sed -i "/^#!\/bin\/bash/a [[ -s \"\/home\/$5\/.rvm\/scripts\/rvm\" ]] \&\& source \"\/home\/$5\/.rvm\/scripts\/rvm\" \#L1P1" ./runsvc.sh
+sudo sed -i "/L1P1/a echo \`cat .path\`:\$MY_RUBY_HOME/bin:\$GEM_HOME/bin > .mypath \#L2P2" ./runsvc.sh
+sudo sed -i "/L2P2/a cp .mypath .path" ./runsvc.sh
 
 sudo -E ./svc.sh start >> /home/$5/vsts.install.log.txt 2>&1
 echo =============================== >> /home/$5/vsts.install.log.txt 2>&1
