@@ -2,6 +2,9 @@
 
 # Install Build Tools
 sudo /bin/date +%H:%M:%S > /home/$5/install.progress.txt
+
+echo *****FULL Install ***** >> /home/$5/install.progress.txt
+
 echo "Installing build-essential package" >> /home/$5/install.progress.txt
 sudo apt-get -y install build-essential
 sudo /bin/date +%H:%M:%S >> /home/$5/install.progress.txt
