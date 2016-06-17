@@ -23,7 +23,7 @@
     },
     "vstsAgentName": {
       "type": "string",
-      "defaultValue": "openjdk-ubuntu-auto",
+      "defaultValue": "fullbuild-ubuntu-auto",
       "metadata": {
         "description": "Team Services Agent Name"
       }
@@ -66,11 +66,11 @@
     }
   },
   "variables": {
-    "nicName": "[concat('myVMNic',uniqueString(resourceGroup().id, deployment().name))]",
+    "nicName": "[concat('myNic1',uniqueString(resourceGroup().id, deployment().name))]",
     "addressPrefix": "10.0.0.0/16",
     "subnet1Name": "Subnet-1",
     "subnet1Prefix": "10.0.0.0/24",
-    "publicIPAddressName": "[concat('myPublicIP',uniqueString(resourceGroup().id, deployment().name))]",
+    "publicIPAddressName": "[concat('myIP1',uniqueString(resourceGroup().id, deployment().name))]",
     "publicIPAddressType": "Dynamic",
     "vmStorageAccountContainerName": "vhds",
     "vmName": "[parameters('vmDnsName')]",
@@ -206,9 +206,9 @@
         "typeHandlerVersion": "1.2",
         "settings": {
           "fileUris": [
-            "https://raw.githubusercontent.com/paultbarham/azure-quickstart-templates/master/openjdk-vstsbuild-ubuntu-vm/java-vstsbuild-install.sh"
+            "https://raw.githubusercontent.com/paultbarham/azure-quickstart-templates/master/vsts-fullbuild-ubuntu-vm/full-vstsbuild-install.sh"
           ],
-          "commandToExecute": "[concat('sh java-vstsbuild-install.sh',' ',parameters('vstsAccountURL'),' ',parameters('vstsPAT'),' ',parameters('vstsPoolName'),' ',parameters('vstsAgentName'),' ',parameters('adminUserName'))]"
+          "commandToExecute": "[concat('sh full-vstsbuild-install.sh',' ',parameters('vstsAccountURL'),' ',parameters('vstsPAT'),' ',parameters('vstsPoolName'),' ',parameters('vstsAgentName'),' ',parameters('adminUserName'))]"
         }
       }
     }
