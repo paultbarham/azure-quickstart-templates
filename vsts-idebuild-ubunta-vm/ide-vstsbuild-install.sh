@@ -134,7 +134,9 @@ echo "Downloading VSTS Build agent package" >> /home/$5/install.progress.txt
 cd /home/$5/downloads
 
 # sudo -u $5 wget https://github.com/Microsoft/vsts-agent/releases/download/v2.101.1/vsts-agent-ubuntu.14.04-x64-2.101.1.tar.gz
-sudo -u $5 wget https://github.com/Microsoft/vsts-agent/releases/download/v2.102.0/vsts-agent-ubuntu.14.04-x64-2.102.0.tar.gz
+# sudo -u $5 wget https://github.com/Microsoft/vsts-agent/releases/download/v2.102.0/vsts-agent-ubuntu.14.04-x64-2.102.0.tar.gz
+sudo -u $5 wget https://github.com/Microsoft/vsts-agent/releases/download/v2.105.2/vsts-agent-ubuntu.16.04-x64-2.105.2.tar.gz
+
 sudo -u $5 wget http://security.ubuntu.com/ubuntu/pool/main/i/icu/libicu52_52.1-8ubuntu0.2_amd64.deb
 sudo dpkg -i libicu52_52.1-8ubuntu0.2_amd64.deb
 
